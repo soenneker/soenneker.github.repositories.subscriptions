@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -7,7 +7,6 @@ using Soenneker.Extensions.ValueTask;
 using Soenneker.GitHub.ClientUtil.Abstract;
 using Soenneker.GitHub.OpenApiClient;
 using Soenneker.GitHub.OpenApiClient.Models;
-using Soenneker.GitHub.OpenApiClient.Repos.Item.Item.Subscription;
 using Soenneker.GitHub.Repositories.Subscriptions.Abstract;
 
 namespace Soenneker.GitHub.Repositories.Subscriptions;
@@ -46,7 +45,7 @@ public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSub
         {
             _logger.LogDebug("Subscribing to repository {Owner}/{Repo}", owner, repo);
 
-            var requestBody = new SubscriptionPutRequestBody
+            var requestBody = new ActivitySetRepoSubscription
             {
                 Subscribed = true,
                 Ignored = false
