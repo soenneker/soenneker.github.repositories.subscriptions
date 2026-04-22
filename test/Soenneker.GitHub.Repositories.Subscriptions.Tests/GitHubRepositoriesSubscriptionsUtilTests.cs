@@ -1,20 +1,19 @@
-﻿using Soenneker.GitHub.Repositories.Subscriptions.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.GitHub.Repositories.Subscriptions.Abstract;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.GitHub.Repositories.Subscriptions.Tests;
 
-[Collection("Collection")]
-public sealed class GitHubRepositoriesSubscriptionsUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class GitHubRepositoriesSubscriptionsUtilTests : HostedUnitTest
 {
     private readonly IGitHubRepositoriesSubscriptionsUtil _util;
 
-    public GitHubRepositoriesSubscriptionsUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public GitHubRepositoriesSubscriptionsUtilTests(Host host) : base(host)
     {
         _util = Resolve<IGitHubRepositoriesSubscriptionsUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
