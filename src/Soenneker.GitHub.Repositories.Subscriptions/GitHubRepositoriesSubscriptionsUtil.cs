@@ -45,14 +45,14 @@ public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSub
         {
             _logger.LogDebug("Subscribing to repository {Owner}/{Repo}", owner, repo);
 
-            var requestBody = new ActivitySetRepoSubscription
+            var requestBody = new ActivitySetRepoSubscriptionRequest
             {
                 Subscribed = true,
                 Ignored = false
             };
 
             GitHubOpenApiClient client = await _gitHubClientUtil.Get(cancellationToken).NoSync();
-            return await client.Repos[owner][repo].Subscription.PutAsync(requestBody, cancellationToken: cancellationToken).NoSync();
+            return (await client.Repos[owner][repo].Subscription.PutAsync(requestBody, cancellationToken: cancellationToken).NoSync())!;
         }
         catch (Exception ex)
         {
