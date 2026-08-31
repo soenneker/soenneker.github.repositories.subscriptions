@@ -6,7 +6,7 @@ using Soenneker.GitHub.Repositories.Subscriptions.Abstract;
 namespace Soenneker.GitHub.Repositories.Subscriptions.Registrars;
 
 /// <summary>
-/// A utility for managing GitHub Repository Subscriptions
+/// Registers services for reading and changing GitHub repository watch subscriptions.
 /// </summary>
 public static class GitHubRepositoriesSubscriptionsUtilRegistrar
 {

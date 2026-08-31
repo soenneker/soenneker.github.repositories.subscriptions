@@ -11,7 +11,6 @@ using Soenneker.GitHub.Repositories.Subscriptions.Abstract;
 
 namespace Soenneker.GitHub.Repositories.Subscriptions;
 
-/// <inheritdoc cref="IGitHubRepositoriesSubscriptionsUtil"/>
 public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSubscriptionsUtil
 {
     private readonly ILogger<GitHubRepositoriesSubscriptionsUtil> _logger;
@@ -52,7 +51,10 @@ public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSub
             };
 
             GitHubOpenApiClient client = await _gitHubClientUtil.Get(cancellationToken).NoSync();
-            return (await client.Repos[owner][repo].Subscription.PutAsync(requestBody, cancellationToken: cancellationToken).NoSync())!;
+            RepositorySubscription? subscription =
+                await client.Repos[owner][repo].Subscription.PutAsync(requestBody, cancellationToken: cancellationToken).NoSync();
+
+            return subscription ?? throw new InvalidOperationException("GitHub did not return the updated repository subscription.");
         }
         catch (Exception ex)
         {

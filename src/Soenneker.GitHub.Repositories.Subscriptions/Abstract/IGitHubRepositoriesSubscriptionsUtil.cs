@@ -5,7 +5,7 @@ using Soenneker.GitHub.OpenApiClient.Models;
 namespace Soenneker.GitHub.Repositories.Subscriptions.Abstract;
 
 /// <summary>
-/// A utility for managing GitHub Repository Subscriptions
+/// Reads and changes the authenticated GitHub user's watch subscription for a repository.
 /// </summary>
 public interface IGitHubRepositoriesSubscriptionsUtil
 {
