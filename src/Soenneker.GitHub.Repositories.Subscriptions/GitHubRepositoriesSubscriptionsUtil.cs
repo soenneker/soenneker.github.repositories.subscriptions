@@ -11,6 +11,7 @@ using Soenneker.GitHub.Repositories.Subscriptions.Abstract;
 
 namespace Soenneker.GitHub.Repositories.Subscriptions;
 
+/// <inheritdoc cref="IGitHubRepositoriesSubscriptionsUtil" />
 public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSubscriptionsUtil
 {
     private readonly ILogger<GitHubRepositoriesSubscriptionsUtil> _logger;
