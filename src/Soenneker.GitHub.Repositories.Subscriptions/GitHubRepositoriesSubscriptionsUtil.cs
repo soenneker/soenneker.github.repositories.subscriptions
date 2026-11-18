@@ -27,7 +27,8 @@ public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSub
     {
         try
         {
-            _logger.LogDebug("Getting subscription status for repository {Owner}/{Repo}", owner, repo);
+            if (_logger.IsEnabled(LogLevel.Debug))
+                _logger.LogDebug("Getting subscription status for repository {Owner}/{Repo}", owner, repo);
             
             GitHubOpenApiClient client = await _gitHubClientUtil.Get(cancellationToken).NoSync();
             return await client.Repos[owner][repo].Subscription.GetAsync(cancellationToken: cancellationToken).NoSync();
@@ -43,7 +44,8 @@ public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSub
     {
         try
         {
-            _logger.LogDebug("Subscribing to repository {Owner}/{Repo}", owner, repo);
+            if (_logger.IsEnabled(LogLevel.Debug))
+                _logger.LogDebug("Subscribing to repository {Owner}/{Repo}", owner, repo);
 
             var requestBody = new ActivitySetRepoSubscriptionRequest
             {
@@ -68,7 +70,8 @@ public sealed class GitHubRepositoriesSubscriptionsUtil : IGitHubRepositoriesSub
     {
         try
         {
-            _logger.LogDebug("Unsubscribing from repository {Owner}/{Repo}", owner, repo);
+            if (_logger.IsEnabled(LogLevel.Debug))
+                _logger.LogDebug("Unsubscribing from repository {Owner}/{Repo}", owner, repo);
 
             GitHubOpenApiClient client = await _gitHubClientUtil.Get(cancellationToken).NoSync();
             await client.Repos[owner][repo].Subscription.DeleteAsync(cancellationToken: cancellationToken).NoSync();
